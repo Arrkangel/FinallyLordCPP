@@ -1,13 +1,28 @@
-
 #include "inputhandler.h"
-#include <SFML/Window.hpp>
 #include <iostream>
-#include "gamelogic.h"
+
 
 
 using namespace std;
+bool InputHandler::isMovement(sf::Key::Code code)
+{
+	if(code=='w'){
+		cout<<"W worked\n";
+		return true;
+	}
+	return false;
+}
+void InputHandler::handleKeyPress(sf::Key::Code code)
+{
+	// switch(code)
+	// {
+	// 	case sf::Key::W:
 
+	// 	break;
 
+	// }
+	bool b=isMovement(code);
+}
 
 void InputHandler::handleInput(sf::Event Event)
 {
@@ -20,7 +35,8 @@ void InputHandler::handleInput(sf::Event Event)
 		break;
 		case sf::Event::KeyPressed:
 		cout<<"A key has been pressed!\n";
-		Game::getGameLogic()->eventTest();
+		handleKeyPress(Event.Key.Code);
+		//Game::getGameLogic()->eventTest();
 		break;
 
 	}

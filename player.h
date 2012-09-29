@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 #include "point2d.h"
 
 class Player
@@ -10,5 +11,6 @@ class Player
 		Player(Point2D _pos);
 		void setPos(Point2D _pos);
 		Point2D getPos();
-		void moveDir(Point2D _dir);
+		void moveDir(Point2D* _dir);
 };
+#endif

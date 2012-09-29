@@ -1,4 +1,5 @@
-#pragma once
+#ifndef POINT2D_H
+#define POINT2D_H
 //Basic 2D point class
 class Point2D
 {
@@ -14,3 +15,4 @@ class Point2D
 		double getY();
 		Point2D add(Point2D* b);
 };
+#endif

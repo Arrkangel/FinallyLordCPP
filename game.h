@@ -1,6 +1,6 @@
+#ifndef GAME_H
+#define GAME_H
 //Static class for connecting systems
-#pragma once
-
 class InputHandler;
 class GameLogic;
 
@@ -18,5 +18,6 @@ public:
 
 
 };
-InputHandler * Game::inputHandler;
-GameLogic * Game::gameLogic;
+InputHandler* Game::inputHandler;
+GameLogic* Game::gameLogic;
+#endif

@@ -2,7 +2,7 @@ CC=g++
 CCFlags=-std=c++0x
 LIBDIRS=-L/usr/local/lib
 LIBS=-lsfml-system -lsfml-window -lsfml-audio
-OBJ=main.o game.o inputhandler.o gamelogic.o point2d.o
+OBJ=main.o game.o inputhandler.o gamelogic.o point2d.o player.o
 
 finallylord : $(OBJ)
 	$(CC) $(CCFLAGS) -o finallylord $(LIBDIRS) $(LIBS) $(OBJ)
@@ -16,4 +16,6 @@ gamelogic.o : gamelogic.cpp
 	$(CC) $(CCFLAGS) -c gamelogic.cpp
 point2d.o : point2d.cpp
 	$(CC) $(CCFLAGS) -c point2d.cpp
+player.o : player.cpp
+	$(CC) $(CCFLAGS) -c player.cpp
 

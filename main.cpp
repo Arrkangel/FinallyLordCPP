@@ -11,7 +11,6 @@ bool running=true;
 sf::Window App(sf::VideoMode(800, 600, 32), "SFML Window");
 InputHandler inputHandler;
 GameLogic gameLogic;
-
 void updateInput()
 {
 	sf::Event Event;
