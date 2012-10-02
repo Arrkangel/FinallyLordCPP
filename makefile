@@ -1,21 +1,27 @@
-CC=g++
-CCFlags=-std=c++0x
-LIBDIRS=-L/usr/local/lib
-LIBS=-lsfml-system -lsfml-window -lsfml-audio
-OBJ=main.o game.o inputhandler.o gamelogic.o point2d.o player.o
+CC = g++
+OPT = 0
+DBG = 3
+MYCFLAGS =
+MYLDFLAGS =
+GIT_VERSION = $(shell git rev-parse --short HEAD)-$(shell date +%y%m%d)
+CFLAGS = -O$(OPT) -g$(DBG) -DGIT_VERSION="\"$(GIT_VERSION)\"" $(MYCFLAGS)
+LDFLAGS = -L/usr/local/lib -lsfml-system -lsfml-window -lsfml-audio -lsfml-graphics $(MYLDFLAGS)
+OBJDIR = obj
+OUT = finallylord
 
-finallylord : $(OBJ)
-	$(CC) $(CCFLAGS) -o finallylord $(LIBDIRS) $(LIBS) $(OBJ)
-main.o : main.cpp
-	$(CC) $(CCFLAGS) -c main.cpp
-game.o : game.cpp
-	$(CC) $(CCFLAGS) -c game.cpp
-inputhandler.o : inputhandler.cpp
-	$(CC) $(CCFLAGS) -c inputhandler.cpp
-gamelogic.o : gamelogic.cpp
-	$(CC) $(CCFLAGS) -c gamelogic.cpp
-point2d.o : point2d.cpp
-	$(CC) $(CCFLAGS) -c point2d.cpp
-player.o : player.cpp
-	$(CC) $(CCFLAGS) -c player.cpp
+.PHONY: clean
+default: $(OUT)
 
+SRC = $(wildcard src/*.cpp)
+HDR = $(wildcard src/*.h)
+OBJ = $(patsubst src/%.cpp,$(OBJDIR)/%.o,$(SRC))
+
+$(OBJDIR)/%.o: src/%.cpp $(HDR)
+	@mkdir -p $(OBJDIR)
+	$(CC) -o $@ $(CFLAGS) -c $<
+
+$(OUT): $(OBJ)
+	$(CC) -o $(OUT) $(OBJ) $(LDFLAGS)
+
+clean:
+	@rm -rf $(OUT) $(OBJDIR)
